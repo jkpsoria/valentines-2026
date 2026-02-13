@@ -163,7 +163,7 @@
         }
       }
 
-      /* Jasmine flower */
+      /* jasmine flower */
       .jasmine {
         position: absolute;
         width: 50px;
@@ -174,7 +174,7 @@
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
       }
 
-      /* Center of the flower */
+      /* center of the flower */
       .jasmine::before {
         content: "";
         position: absolute;
@@ -188,7 +188,7 @@
         z-index: 2;
       }
 
-      /* Individual petals */
+      /* petals */
       .jasmine .petal {
         position: absolute;
         width: 18px;
@@ -297,7 +297,7 @@
         }
       }
 
-      /* Spinning variation */
+      /* spinning variation */
       @keyframes fallSpin {
         from {
           transform: translateY(-120px) rotate(0deg);
@@ -369,7 +369,7 @@
       noBtn.addEventListener("click", () => {
         if (guiltMessage) return;
 
-        // Create message
+        // create message
         guiltMessage = document.createElement("p");
         guiltMessage.style.marginTop = "14px";
         guiltMessage.style.fontSize = "0.95rem";
@@ -381,23 +381,23 @@
 
         buttons.parentElement.appendChild(guiltMessage);
 
-        // Fade message in
+        // fade message in
         setTimeout(() => {
           guiltMessage.style.opacity = "1";
         }, 50);
 
-        // After 2s → playful twist
+        // after 2s → playful twist
         setTimeout(() => {
           guiltMessage.textContent =
             "Just kidding… you can’t escape that easily 🌿";
         }, 2000);
 
-        // After 2.5s → fade out NO button
+        // after 2.5s → fade out NO button
         setTimeout(() => {
           noBtn.classList.add("fade-out");
         }, 2500);
 
-        // After 3.5s → highlight YES
+        // after 3.5s → highlight YES
         setTimeout(() => {
           yesBtn.style.transform = "scale(1.12)";
           yesBtn.style.boxShadow = "0 0 18px rgba(127,161,134,0.4)";
