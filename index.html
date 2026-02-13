@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Be My Valentine?</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg1: #eef4ef;
+        --bg2: #dfeadf;
+        --card: #ffffff;
+        --olive: #6f8f72;
+        --sage: #9fb8a3;
+        --soft-green: #c7ddc9;
+        --text: #3f4f44;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .fade-out {
+        opacity: 0;
+        transform: scale(0.8);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+        pointer-events: none;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(180deg, var(--bg1), var(--bg2));
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .invite {
+        background: var(--card);
+        border-radius: 26px;
+        padding: 42px 34px;
+        max-width: 460px;
+        width: 90%;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        animation: rise 1s ease forwards;
+        position: relative;
+        z-index: 0;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: var(--olive);
+      }
+
+      .subtitle {
+        color: #5c6f61;
+        margin-bottom: 28px;
+        font-size: 1.05rem;
+      }
+
+      .section {
+        background: #f4f8f4;
+        border-radius: 18px;
+        padding: 18px;
+        margin-bottom: 22px;
+      }
+
+      .section h2 {
+        font-family: "Cormorant Garamond", serif;
+        margin: 0 0 12px;
+        color: var(--olive);
+        font-size: 1.45rem;
+      }
+
+      .detail {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #e3ece3;
+        font-size: 0.95rem;
+      }
+
+      .detail:last-child {
+        border-bottom: none;
+      }
+
+      .label {
+        color: #7a9380;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 12px;
+      }
+
+      button {
+        padding: 12px 28px;
+        border-radius: 30px;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.25s ease;
+      }
+
+      #yes {
+        background: linear-gradient(135deg, #9fb8a3, #7fa186);
+        color: white;
+      }
+
+      #yes:hover {
+        transform: scale(1.08);
+      }
+
+      #no {
+        background: transparent;
+        border: 1px solid #b8cbb9;
+        color: #6f8f72;
+        position: relative;
+      }
+
+      #final {
+        display: none;
+        text-align: center;
+        margin-top: 28px;
+        animation: fade 0.8s ease forwards;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Jasmine flower */
+      .jasmine {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        animation-name: fall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      }
+
+      /* Center of the flower */
+      .jasmine::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: radial-gradient(circle, #fff9e6 0%, #f4e4a0 100%);
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+      }
+
+      /* Individual petals */
+      .jasmine .petal {
+        position: absolute;
+        width: 18px;
+        height: 24px;
+        background: radial-gradient(
+          ellipse at center,
+          #ffffff 0%,
+          #f8f9f8 60%,
+          #e8f0e8 100%
+        );
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        top: 50%;
+        left: 50%;
+        transform-origin: 50% 100%;
+      }
+
+      .jasmine .petal:nth-child(1) {
+        transform: translate(-50%, -100%) rotate(0deg);
+      }
+
+      .jasmine .petal:nth-child(2) {
+        transform: translate(-50%, -100%) rotate(72deg);
+      }
+
+      .jasmine .petal:nth-child(3) {
+        transform: translate(-50%, -100%) rotate(144deg);
+      }
+
+      .jasmine .petal:nth-child(4) {
+        transform: translate(-50%, -100%) rotate(216deg);
+      }
+
+      .jasmine .petal:nth-child(5) {
+        transform: translate(-50%, -100%) rotate(288deg);
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 16px;
+          overflow-y: auto;
+        }
+
+        .invite {
+          padding: 28px 20px;
+          border-radius: 22px;
+        }
+
+        h1 {
+          font-size: 2rem;
+          text-align: center;
+        }
+
+        .subtitle {
+          font-size: 0.95rem;
+          text-align: center;
+          margin-bottom: 22px;
+        }
+
+        .section {
+          padding: 16px;
+          margin-bottom: 18px;
+        }
+
+        .section h2 {
+          font-size: 1.25rem;
+          text-align: center;
+        }
+
+        .detail {
+          flex-direction: column;
+          gap: 4px;
+          font-size: 0.9rem;
+        }
+
+        .label {
+          font-size: 0.8rem;
+        }
+
+        .buttons {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        button {
+          width: 100%;
+          padding: 14px;
+          font-size: 1rem;
+        }
+
+        #no {
+          transform: none !important;
+        }
+      }
+
+      @keyframes fall {
+        from {
+          transform: translateY(-120px) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        to {
+          transform: translateY(110vh) rotate(720deg);
+          opacity: 0.9;
+        }
+      }
+
+      /* Spinning variation */
+      @keyframes fallSpin {
+        from {
+          transform: translateY(-120px) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        to {
+          transform: translateY(110vh) rotate(-720deg);
+          opacity: 0.9;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="invite">
+      <h1>For You 🤍</h1>
+      <div class="subtitle">
+        I wanted to ask you something in a way that feels a little more special.
+      </div>
+
+      <div class="section">
+        <h2>The Plan</h2>
+        <div class="detail">
+          <span class="label">What</span>
+          <span>Dinner & Conversation</span>
+        </div>
+        <div class="detail">
+          <span class="label">Where</span>
+          <span>Pizzera Playa</span>
+        </div>
+        <div class="detail">
+          <span class="label">When</span>
+          <span>February 14 · 6:00 PM</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>The Question</h2>
+        <p>
+          Will you be my Valentine and let me take you out for a night filled
+          with good food and better company?
+        </p>
+
+        <div class="buttons">
+          <button id="yes">Yes ✨</button>
+          <button id="no">No</button>
+        </div>
+      </div>
+
+      <div id="final">
+        <h1>It's a date 🌿</h1>
+        <p>
+          I'm really looking forward to this.<br />
+          February 14th just got exciting.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const noBtn = document.getElementById("no");
+      const yesBtn = document.getElementById("yes");
+      const final = document.getElementById("final");
+      const buttons = document.querySelector(".buttons");
+
+      let guiltMessage;
+
+      noBtn.addEventListener("click", () => {
+        if (guiltMessage) return;
+
+        // Create message
+        guiltMessage = document.createElement("p");
+        guiltMessage.style.marginTop = "14px";
+        guiltMessage.style.fontSize = "0.95rem";
+        guiltMessage.style.color = "#7a9380";
+        guiltMessage.style.opacity = "0";
+        guiltMessage.style.transition = "opacity 0.4s ease";
+        guiltMessage.textContent =
+          "Okay… I’ll just cancel the reservation then 😔";
+
+        buttons.parentElement.appendChild(guiltMessage);
+
+        // Fade message in
+        setTimeout(() => {
+          guiltMessage.style.opacity = "1";
+        }, 50);
+
+        // After 2s → playful twist
+        setTimeout(() => {
+          guiltMessage.textContent =
+            "Just kidding… you can’t escape that easily 🌿";
+        }, 2000);
+
+        // After 2.5s → fade out NO button
+        setTimeout(() => {
+          noBtn.classList.add("fade-out");
+        }, 2500);
+
+        // After 3.5s → highlight YES
+        setTimeout(() => {
+          yesBtn.style.transform = "scale(1.12)";
+          yesBtn.style.boxShadow = "0 0 18px rgba(127,161,134,0.4)";
+        }, 3500);
+      });
+
+      yesBtn.addEventListener("click", () => {
+        buttons.style.display = "none";
+        if (guiltMessage) guiltMessage.remove();
+        final.style.display = "block";
+        releaseJasmines();
+      });
+
+      function createJasmine() {
+        const flower = document.createElement("div");
+        flower.className = "jasmine";
+
+        for (let i = 0; i < 5; i++) {
+          const petal = document.createElement("div");
+          petal.className = "petal";
+          flower.appendChild(petal);
+        }
+
+        return flower;
+      }
+
+      function releaseJasmines() {
+        for (let i = 0; i < 50; i++) {
+          const jasmine = createJasmine();
+
+          const size = Math.random() * 0.4 + 0.8;
+          jasmine.style.transform = `scale(${size})`;
+
+          jasmine.style.left = Math.random() * 100 + "vw";
+          jasmine.style.top = "-80px";
+          jasmine.style.animationName =
+            Math.random() > 0.5 ? "fall" : "fallSpin";
+          jasmine.style.animationDuration = Math.random() * 4 + 7 + "s";
+          jasmine.style.animationDelay = Math.random() * 3 + "s";
+
+          document.body.appendChild(jasmine);
+          setTimeout(() => jasmine.remove(), 15000);
+        }
+      }
+
+      setInterval(() => {
+        const jasmine = createJasmine();
+
+        const size = Math.random() * 0.3 + 0.85;
+        jasmine.style.transform = `scale(${size})`;
+
+        jasmine.style.left = Math.random() * 100 + "vw";
+        jasmine.style.top = "-60px";
+        jasmine.style.animationName = Math.random() > 0.5 ? "fall" : "fallSpin";
+        jasmine.style.animationDuration = Math.random() * 5 + 8 + "s";
+
+        document.body.appendChild(jasmine);
+        setTimeout(() => jasmine.remove(), 15000);
+      }, 1200);
+    </script>
+  </body>
+</html>
